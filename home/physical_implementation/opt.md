@@ -1,0 +1,17 @@
+## optmization
+
+placement/ route is not timing-drived, so there are still some optimization to do after placement and route.
++ fix timing, DRV and power
++ eg: PPA(Power, performance, area) measurement of a chip
+
+### place
++ what to do?
+  - add buffer/double inv
+  - resizeing
+  - moving
+  - pin swap
+  - restruct circuits structure: simple cell -> complex cell
+  - layer assignment: use higher layer to route, reduce RC
+
+
+
