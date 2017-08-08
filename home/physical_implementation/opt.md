@@ -4,7 +4,7 @@ placement/ route is not timing-drived, so there are still some optimization to d
 + fix timing, DRV and power
 + eg: PPA(Power, performance, area) measurement of a chip
 
-### place
+### basic methods
 + what to do?
   - add buffer/double inv
   - resizeing
@@ -12,6 +12,10 @@ placement/ route is not timing-drived, so there are still some optimization to d
   - pin swap
   - restruct circuits structure: simple cell -> complex cell
   - layer assignment: use higher layer to route, reduce RC
+  
+### prects
++ command: place_opt_design -opt
++ goal: DRV clean, setup timing clorse
 
 
 
