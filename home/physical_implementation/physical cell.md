@@ -1,4 +1,4 @@
-###  physical cell
+###  physical cells
 ---
 + decap cell，去耦单元，这是一种特殊的Filler cell。
 当电路中大量单元同时翻转时会导致冲放电瞬间电流增大，使得电路动态供电电压下降或地线电压升高，引起动态电压降，俗称IR-drop。
@@ -30,3 +30,9 @@ setUserDataValue init_gnd_net {vss}
 + track: Track是指布线轨道，类似grid和row一样，可以规划绕线器的走线方案。信号线通常必须snap到track上。我们把track分为Pref track和Non-pref track。 也称为垂直和水平布线轨道。通常在design的tech lef中定义。Lef中与该层layer的direction相对应的就是pref track, 剩下的另外一个定义就是Non-pref track。
 + Row: 我们知道row是表征Floorplan横向排列的一个重要网格，它对std cell的摆放起着限制约束作用。那Encounter中其实有多种row类型，各自对应着不同的用法。下面我们就来讲讲它们各自的定义方法和作用。
 我们首先得知道SITE单元属性的概念。SITE定义的是最小的布局单位.row也有自己的方向，通常相邻的row会相互abut并且flip,这样能够节省打电源线资源
++ cell status
+  - Unplaced就是没有instance还没有place，还在右下角呢。
+Placed就是该instance已经place好了，但是不稳定，接下来的步骤工具都可以去动它
+Fixed就是相当于preplace住了，接下来步骤中，工具不能动它了，但是你自己还是可以去动它的.
+Cover就是cover cell了，在这种状态下，连你自己也不能去动它了，一般做完一些super cmd后，会把整个top cell设定成cover cell. 防止自己的错误操作。
+SoftFixed: 前面几种状态大家都很熟悉吧，但大家知道softFixed吗？softFixed是介于placed和fixed之间的一种状态，它代表着该状态下的instance在global place中不能被移动。但是在detail place中的legalization可以移动，optDesign中可以被upsize.
