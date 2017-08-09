@@ -19,8 +19,10 @@ placement/ route is not timing-drived, so there are still some optimization to d
 process
 + rc extraction and build timing graph
 + global optimization
-  1. Netlist simplification: add/delete buffer, improve structure
-  2. 
+
+  1. Netlist simplification: delete buffer, improve structure
+  2. fixing: add buffer to fix max transition fanout, cap, length, etc
+  3 
 
 
 
