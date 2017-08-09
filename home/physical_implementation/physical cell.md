@@ -27,4 +27,6 @@ setUserDataValue init_gnd_net {vss}
 + spare cell：简单来说，就是每块地方洒一些类似SDFF，NAND，AND，XOR，INV等的备用cell, 为以后做function eco和metal eco用。
 流片过程是先光刻base层和M1层的片子，这个是最贵的，这个需要一两个星期。这段时间，要是验证过程中发现了func和metal error，就改变M2以及以上金属层的连线，连接备用cell去修。代工厂再给你做M2以及以上金属层的片子。这样就可以不需要修改place 只改指定metal的routing就可以了
 在Encounter中，采用specifySpareGate来定义spare cell
-+ 
++ track: Track是指布线轨道，类似grid和row一样，可以规划绕线器的走线方案。信号线通常必须snap到track上。我们把track分为Pref track和Non-pref track。 也称为垂直和水平布线轨道。通常在design的tech lef中定义。Lef中与该层layer的direction相对应的就是pref track, 剩下的另外一个定义就是Non-pref track。
++ Row: 我们知道row是表征Floorplan横向排列的一个重要网格，它对std cell的摆放起着限制约束作用。那Encounter中其实有多种row类型，各自对应着不同的用法。下面我们就来讲讲它们各自的定义方法和作用。
+我们首先得知道SITE单元属性的概念。SITE定义的是最小的布局单位.row也有自己的方向，通常相邻的row会相互abut并且flip,这样能够节省打电源线资源
