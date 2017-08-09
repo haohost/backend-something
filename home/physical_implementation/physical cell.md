@@ -9,3 +9,22 @@ Encounter中通过addFiller命令添加decap cell
 IO filler，通常是用来填充I/O 单元与I/O单元之间的空隙。
 为了更好的完成power ring，也就是ESD之间的电源连接。
 通常是在floorplan阶段时添加。使用addIoFiller命令。
+Std cell filler，也是为了填充std cell之间的空隙。
+主要是把扩散层连接起来满足DRC规则和设计需求，并形成power rails。
+通常是在place之后，route之前添加，使用命令addFiller。
++ Well tap cell 一种物理单元，在floorplan stage摆放，主要防止CMOS器件的寄生闩锁效应（latch-up），有些标准单元的版图没有画阱接触孔和衬底接触孔，
+而是把这两个孔做成单元，这样在做PR时可以节约面积，如果不加，那么会发生latch-up效应。
++ Endcap是一种特殊的标准单元。在后端物理设计中，除了与，非，或等一些常见的标准单元外，还有一些特殊的物理单元(physical cell)，
+它们通常没有逻辑电路，不存在与netlist当中，但是对整个芯片的运行，稳定却起着举足轻重的作用。那Endcap cell就是其中一种，它俗称为拐角单元。
+Endcap主要加在row的结尾（两边都要加），以及memory 或者其他block的周围包边
+主要是为了避免PSE ( poly space effect）和OSE（od space effect）造成的影响，
+不能让poly和OD周围太空，不对称，密度太低，因此通过加endcap来满足均匀的密度， 使得std cell 周围的环境一致。
++ Physical Net就是我们平常用到的power, ground, tie-hi，tie-lo。
+这些net没有定义在netlist中，在Encounter中通过在global文件中以下两行导入：
+setUserDataValue init_pwr_net {vdd_mpu}
+setUserDataValue init_gnd_net {vss}
+并且可以通过globalNetConnect把instance的pg pin或者1'b0/1'b1 pin连接到对应的global net上
++ spare cell：简单来说，就是每块地方洒一些类似SDFF，NAND，AND，XOR，INV等的备用cell, 为以后做function eco和metal eco用。
+流片过程是先光刻base层和M1层的片子，这个是最贵的，这个需要一两个星期。这段时间，要是验证过程中发现了func和metal error，就改变M2以及以上金属层的连线，连接备用cell去修。代工厂再给你做M2以及以上金属层的片子。这样就可以不需要修改place 只改指定metal的routing就可以了
+在Encounter中，采用specifySpareGate来定义spare cell
++ 
