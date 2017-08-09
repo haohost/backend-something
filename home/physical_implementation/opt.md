@@ -16,8 +16,11 @@ placement/ route is not timing-drived, so there are still some optimization to d
 ### prects
 + command: place_opt_design -opt
 + goal: DRV clean, setup timing clorse, no concern on hold violation
-  - rc extraction and build timing graph
-  - global optimization
+process
++ rc extraction and build timing graph
++ global optimization
+  1. Netlist simplification: add/delete buffer, improve structure
+  2. 
 
 
 
