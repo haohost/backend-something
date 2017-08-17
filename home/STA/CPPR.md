@@ -7,3 +7,6 @@ in case of half cycle paths, CRPR calculation will be different because the rise
 this delay difference cant be removed. but tool will remove the difference which is smaller in the below two cases.
 1) difference with rise delay in common path
 2) difference with fall delay in common path
+
++ use `report_cppr` commnad to report cppr. However, some aspects should be setted into consideration.
++ `-from` `-to` from the common path start point to end point, not the critical path.
